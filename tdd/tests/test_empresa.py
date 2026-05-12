@@ -1,6 +1,7 @@
 import unittest
 from empresa import Empresa
 from funcionario import Funcionario
+from projeto import Projeto
 
 
 class TestEmpresa(unittest.TestCase):
@@ -20,3 +21,9 @@ class TestEmpresa(unittest.TestCase):
         empresa.adicionar_funcionario(funcionario)
 
         self.assertEqual(empresa.funcionarios[0].nome, "Hugo")
+
+    def test_add_projeto_na_empresa(self):
+        empresa = Empresa("Companhia do Código")
+        projeto = Projeto("Projeto Teste")
+
+        empresa.adicionar_projeto(projeto)
