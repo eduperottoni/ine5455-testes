@@ -20,7 +20,7 @@ class TestProjeto(unittest.TestCase):
         funcionario = Funcionario("Eduardo")
 
         self.projeto.adicionar_funcionario(funcionario)
-        assert self.projeto.funcionarios[0].nome == "Eduardo"
+        self.assertEqual("Eduardo", self.projeto.funcionarios[0].nome)
 
     def test_add_varios_funcionarios_no_projeto(self):
         funcionario1 = Funcionario("Matheus")
@@ -29,8 +29,8 @@ class TestProjeto(unittest.TestCase):
         self.projeto.adicionar_funcionario(funcionario1)
         self.projeto.adicionar_funcionario(funcionario2)
 
-        assert self.projeto.funcionarios[0].nome == "Matheus"
-        assert self.projeto.funcionarios[1].nome == "Joice"
+        self.assertEqual("Matheus", self.projeto.funcionarios[0].nome)
+        self.assertEqual("Joice", self.projeto.funcionarios[1].nome)
 
     def test_add_funcionario_null(self):
 
@@ -44,10 +44,10 @@ class TestProjeto(unittest.TestCase):
         projeto1.adicionar_funcionario(Funcionario("Eduardo"))
         projeto2.adicionar_funcionario(Funcionario("Eduardo"))
 
-        assert len(projeto1.funcionarios) == 1
-        assert len(projeto2.funcionarios) == 1
-        assert projeto1.funcionarios[0].nome == "Eduardo"
-        assert projeto2.funcionarios[0].nome == "Eduardo"
+        self.assertEqual(1, len(projeto1.funcionarios))
+        self.assertEqual(1, len(projeto2.funcionarios))
+        self.assertEqual("Eduardo", projeto1.funcionarios[0].nome)
+        self.assertEqual("Eduardo", projeto2.funcionarios[0].nome)
 
     def test_add_mesmo_funcionario_em_mesmo_projeto(self):
 
@@ -56,5 +56,5 @@ class TestProjeto(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.projeto.adicionar_funcionario(Funcionario("Eduardo"))
 
-        assert len(self.projeto.funcionarios) == 1
-        assert self.projeto.funcionarios[0].nome == "Eduardo"
+        self.assertEqual(1, len(self.projeto.funcionarios))
+        self.assertEqual("Eduardo", self.projeto.funcionarios[0].nome)
