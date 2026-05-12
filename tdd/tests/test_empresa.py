@@ -67,6 +67,5 @@ class TestEmpresa(unittest.TestCase):
 
         self.empresa.adicionar_projeto(projeto)
 
-        self.empresa.adicionar_projeto(projeto)
         with self.assertRaises(ValueError):
             self.empresa.adicionar_projeto(projeto)
