@@ -1,4 +1,5 @@
 import unittest
+from funcionario import Funcionario
 
 
 class TestFuncionario(unittest.TestCase):
