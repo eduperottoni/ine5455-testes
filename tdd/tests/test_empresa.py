@@ -37,6 +37,13 @@ class TestEmpresa(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.empresa.adicionar_funcionario(None)
 
+    def test_add_mesmo_funcionario(self):
+        funcionario = Funcionario("Eduardo")
+
+        self.empresa.adicionar_funcionario(funcionario)
+        with self.assertRaises(ValueError):
+            self.empresa.adicionar_funcionario(funcionario)
+
     def test_add_projeto_na_empresa(self):
         projeto = Projeto("Projeto Teste")
 
@@ -54,3 +61,12 @@ class TestEmpresa(unittest.TestCase):
     def test_add_projeto_null(self):
         with self.assertRaises(ValueError):
             self.empresa.adicionar_projeto(None)
+
+    def test_add_mesmo_projeto(self):
+        projeto = Projeto("Projeto Teste")
+
+        self.empresa.adicionar_projeto(projeto)
+
+        self.empresa.adicionar_projeto(projeto)
+        with self.assertRaises(ValueError):
+            self.empresa.adicionar_projeto(projeto)
