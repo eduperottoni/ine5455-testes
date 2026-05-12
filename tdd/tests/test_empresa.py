@@ -1,4 +1,5 @@
 import unittest
+from empresa import Empresa
 
 
 class TestEmpresa(unittest.TestCase):
