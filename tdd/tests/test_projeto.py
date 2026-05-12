@@ -1,4 +1,5 @@
 import unittest
+from projeto import Projeto
 
 
 class TestProjeto(unittest.TestCase):
