@@ -12,4 +12,5 @@ class Empresa:
         self.funcionarios.append(funcionario)
 
     def adicionar_projeto(self, projeto: Projeto):
+
         self.projetos.append(projeto)

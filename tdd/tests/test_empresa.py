@@ -33,6 +33,10 @@ class TestEmpresa(unittest.TestCase):
 
         self.assertEqual(2, len(self.empresa.funcionarios))
 
+    def test_add_funcionario_null(self):
+        with self.assertRaises(ValueError):
+            self.empresa.adicionar_funcionario(None)
+
     def test_add_projeto_na_empresa(self):
         projeto = Projeto("Projeto Teste")
 
@@ -46,3 +50,7 @@ class TestEmpresa(unittest.TestCase):
         self.empresa.adicionar_projeto(projeto2)
 
         self.assertEqual(2, len(self.empresa.projetos))
+
+    def test_add_projeto_null(self):
+        with self.assertRaises(ValueError):
+            self.empresa.adicionar_projeto(None)
