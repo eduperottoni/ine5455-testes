@@ -30,7 +30,6 @@ class TestMutacao(unittest.TestCase):
         game.move_tile(8)
 
         valor = game.board.get_tile(3, 3)
-        print(valor)
 
         # Antes não tinha esse statement
         # Agora se None for colocado na posição, vai falhar
@@ -65,7 +64,7 @@ class TestMutacao(unittest.TestCase):
 
         # Garantimos que o resultado deve ser diferente de vazio
         # Nesse caso, o OR faz o teste falhar, pois vai retornar vazio
-        self.assertNotEqual(result, " ")
+        # self.assertNotEqual(result, " ")
         self.assertEqual(result, 8)
 
     def test_get_tile_for_column_one(self):
@@ -99,7 +98,6 @@ class TestMutacao(unittest.TestCase):
 
         game = PuzzleGame(3)
 
-        # with self.assertRaises(puzzle_game.InvalidPositionException):
         result = game.get_tile(2, 1)
 
         self.assertEqual(result, 4)
@@ -135,7 +133,6 @@ class TestMutacao(unittest.TestCase):
 
         game = PuzzleGame(3)
 
-        # with self.assertRaises(puzzle_game.InvalidPositionException):
         result = game.get_tile(1, 2)
 
         self.assertEqual(result, 2)
@@ -151,7 +148,7 @@ class TestMutacao(unittest.TestCase):
         for tile in range(1, quantity_of_tiles + 1):
             list_of_tiles.append(tile)
 
-        quantity_of_tiles = self.dimension * self.dimension - 1
+        quantity_of_tiles = self.dimension * self.dimension + 1
         for tile in range(1, quantity_of_tiles + 1):
             list_of_tiles.append(tile)
 

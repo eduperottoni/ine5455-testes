@@ -37,6 +37,7 @@ class TestBranchesMoveTile(unittest.TestCase):
         result = puzzle_game.move_tile(8)
 
         self.assertTrue(result)
+        # self.assertEqual(8, puzzle_game.get_tile(3, 3))
 
     def test_move_tile_with_not_adjacent_position_path3(self):
         puzzle_game = mut.PuzzleGame(3)
