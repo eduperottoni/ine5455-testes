@@ -9,8 +9,11 @@ class Empresa:
         self.projetos = []
 
     def adicionar_funcionario(self, funcionario: Funcionario):
+        if funcionario is None:
+            raise ValueError("O Funcionário não pode ser nulo.")
         self.funcionarios.append(funcionario)
 
     def adicionar_projeto(self, projeto: Projeto):
-
+        if projeto is None:
+            raise ValueError("O projeto não pode ser nulo.")
         self.projetos.append(projeto)
