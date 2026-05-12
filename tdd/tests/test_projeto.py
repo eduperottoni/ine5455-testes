@@ -53,7 +53,9 @@ class TestProjeto(unittest.TestCase):
         projeto = Projeto("Projeto Teste")
 
         projeto.adicionar_funcionario(Funcionario("Eduardo"))
-        projeto.adicionar_funcionario(Funcionario("Eduardo"))
+
+        with self.assertRaises(ValueError):
+            projeto.adicionar_funcionario(Funcionario("Eduardo"))
 
         assert len(projeto.funcionarios) == 1
         assert projeto.funcionarios[0].nome == "Eduardo"
