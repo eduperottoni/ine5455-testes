@@ -48,3 +48,12 @@ class TestProjeto(unittest.TestCase):
         assert len(projeto2.funcionarios) == 1
         assert projeto1.funcionarios[0].nome == "Eduardo"
         assert projeto2.funcionarios[0].nome == "Eduardo"
+
+    def test_add_mesmo_funcionario_em_mesmo_projeto(self):
+        projeto = Projeto("Projeto Teste")
+
+        projeto.adicionar_funcionario(Funcionario("Eduardo"))
+        projeto.adicionar_funcionario(Funcionario("Eduardo"))
+
+        assert len(projeto.funcionarios) == 1
+        assert projeto.funcionarios[0].nome == "Eduardo"
