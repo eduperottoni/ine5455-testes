@@ -1,5 +1,5 @@
 
-PYTHONPATH=src:tests coverage run --branch -m unittest tests.test_empresa
+PYTHONPATH=src:tests coverage run --branch -m unittest discover -s tests
 
 coverage report
 
