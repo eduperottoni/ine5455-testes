@@ -39,3 +39,12 @@ class Ocorrencia:
 
     def fechar(self):
         self.estado = True
+
+    def mudar_prioridade(self, nova_prioridade: PrioridadeOcorrencia):
+        if not isinstance(nova_prioridade, PrioridadeOcorrencia):
+            raise ValueError("prioridade inválida")
+
+        if self.estado:
+            raise ValueError("ocorrencia fechada")
+
+        self.prioridade = nova_prioridade
