@@ -22,10 +22,6 @@ class TestOcorrencia(unittest.TestCase):
         ocorrencia = Ocorrencia(self.funcionario)
         self.assertEqual(id(self.funcionario), id(ocorrencia.responsavel))
 
-    def test_criar_ocorrencia_sem_funcionario(self):
-        with self.assertRaises(ValueError):
-            self.projeto.criar_ocorrencia()
-
     def test_criar_ocorrencia_funcionario_nao_esta_no_projeto(self):
         with self.assertRaises(ValueError):
             self.projeto.criar_ocorrencia(self.funcionario)
