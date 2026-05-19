@@ -27,10 +27,12 @@ class TestOcorrencia(unittest.TestCase):
 
     def test_criar_ocorrencia_funcionario_nao_esta_no_projeto(self):
         with self.assertRaises(ValueError):
-            self.projeto.criar_ocorrencia(self.funcionario)
+            self.projeto.criar_ocorrencia(self.funcionario, "qualquer descricao")
 
-    def test_criar_ocorrencia_funcionario_sucesso(self):
+    def test_criar_ocorrencia_sucesso(self):
         self.projeto.adicionar_funcionario(self.funcionario)
-        ocorrencia = self.projeto.criar_ocorrencia(self.funcionario)
+        ocorrencia = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
 
         self.assertEqual(self.funcionario.nome, ocorrencia.responsavel.nome)
+        self.assertEqual(1, ocorrencia.chave)
+        self.assertEqual("Qualquer resumo", ocorrencia.resumo)
