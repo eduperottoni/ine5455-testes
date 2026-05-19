@@ -9,6 +9,7 @@ class TestOcorrencia(unittest.TestCase):
     def setUp(self):
         self.projeto = Projeto("Projeto Teste")
         self.funcionario = Funcionario("Hugo")
+        self.projeto.adicionar_funcionario(self.funcionario)
 
     def test_instanciar_ocorrencia_funcionario_nulo(self):
         with self.assertRaises(ValueError):
@@ -26,13 +27,21 @@ class TestOcorrencia(unittest.TestCase):
         self.assertEqual("Resumo da ocorrencia", ocorrencia.resumo)
 
     def test_criar_ocorrencia_funcionario_nao_esta_no_projeto(self):
+        joao = Funcionario("Joao")
         with self.assertRaises(ValueError):
-            self.projeto.criar_ocorrencia(self.funcionario, "qualquer descricao")
+            self.projeto.criar_ocorrencia(joao, "qualquer descricao")
 
     def test_criar_ocorrencia_sucesso(self):
-        self.projeto.adicionar_funcionario(self.funcionario)
         ocorrencia = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
 
         self.assertEqual(self.funcionario.nome, ocorrencia.responsavel.nome)
         self.assertEqual(1, ocorrencia.chave)
         self.assertEqual("Qualquer resumo", ocorrencia.resumo)
+
+    def test_criar_ocorrencia_resumo_vazio(self):
+        with self.assertRaises(ValueError):
+            self.projeto.criar_ocorrencia(self.funcionario, "")
+
+    def test_criar_ocorrencia_resumo_poucas_letras(self):
+        with self.assertRaises(ValueError):
+            self.projeto.criar_ocorrencia(self.funcionario, "nada")
