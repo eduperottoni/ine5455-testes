@@ -1,4 +1,17 @@
 from funcionario import Funcionario
+from enum import Enum
+
+
+class TipoOcorrencia(Enum):
+    TAREFA = 1
+    BUG = 2
+    REFATORACAO = 3
+
+
+class PrioridadeOcorrencia(Enum):
+    ALTA = 1
+    MEDIA = 2
+    BAIXA = 3
 
 
 class Ocorrencia:

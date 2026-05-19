@@ -1,5 +1,5 @@
 import unittest
-from ocorrencia import Ocorrencia
+from ocorrencia import Ocorrencia, TipoOcorrencia
 from funcionario import Funcionario
 from projeto import Projeto
 
@@ -97,3 +97,10 @@ class TestOcorrencia(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.projeto.mudar_funcionario(1, jorge)
+
+    def test_tipo_ocorrencia(self):
+        ocorrencia = Ocorrencia(
+            self.funcionario, 1, "Resumo da ocorrencia", TipoOcorrencia.TAREFA
+        )
+
+        self.assertEqual(TipoOcorrencia.TAREFA, ocorrencia.tipo)
