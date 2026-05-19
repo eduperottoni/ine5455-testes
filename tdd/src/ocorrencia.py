@@ -14,3 +14,6 @@ class Ocorrencia:
         self.resumo = resumo
         # False é aberta
         self.estado = False
+
+    def fechar(self):
+        self.estado = True
