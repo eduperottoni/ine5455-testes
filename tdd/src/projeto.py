@@ -21,7 +21,7 @@ class Projeto:
         if func not in self.funcionarios:
             raise ValueError("Funcionário não está no projeto")
 
-        ocorrencia = Ocorrencia(func)
+        ocorrencia = Ocorrencia(func, 3, "")
 
         self.ocorrencias.append(ocorrencia)
         return ocorrencia

@@ -12,11 +12,11 @@ class TestOcorrencia(unittest.TestCase):
 
     def test_instanciar_ocorrencia_funcionario_nulo(self):
         with self.assertRaises(ValueError):
-            Ocorrencia(None)
+            Ocorrencia(None, 1, "")
 
     def test_instanciar_ocorrencia_tipo_funcionario_invalido(self):
         with self.assertRaises(ValueError):
-            Ocorrencia(1)
+            Ocorrencia(1, 2, "Qualquer resumo")
 
     def test_instanciar_ocorrencia_sucesso(self):
         ocorrencia = Ocorrencia(self.funcionario, 1, "Resumo da ocorrencia")
