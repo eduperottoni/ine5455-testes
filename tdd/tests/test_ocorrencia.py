@@ -1,5 +1,5 @@
 import unittest
-from ocorrencia import Ocorrencia, TipoOcorrencia
+from ocorrencia import Ocorrencia, TipoOcorrencia, PrioridadeOcorrencia
 from funcionario import Funcionario
 from projeto import Projeto
 
@@ -101,3 +101,14 @@ class TestOcorrencia(unittest.TestCase):
         )
 
         self.assertEqual(TipoOcorrencia.TAREFA, ocorrencia.tipo)
+
+    def test_prioridade(self):
+        ocorrencia = Ocorrencia(
+            self.hugo,
+            1,
+            "Resumo da ocorrencia",
+            TipoOcorrencia.TAREFA,
+            PrioridadeOcorrencia.ALTA,
+        )
+
+        self.assertEqual(PrioridadeOcorrencia.ALTA, ocorrencia.prioridade)
