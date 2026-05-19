@@ -16,7 +16,12 @@ class PrioridadeOcorrencia(Enum):
 
 class Ocorrencia:
     def __init__(
-        self, resp: Funcionario, chave: int, resumo: str, tipo: TipoOcorrencia
+        self,
+        resp: Funcionario,
+        chave: int,
+        resumo: str,
+        tipo: TipoOcorrencia,
+        prioridade: PrioridadeOcorrencia,
     ):
         if not resp or not isinstance(resp, Funcionario):
             raise ValueError("responsável inválido")
@@ -30,6 +35,7 @@ class Ocorrencia:
         # False é aberta
         self.estado = False
         self.tipo = tipo
+        self.prioridade = prioridade
 
     def fechar(self):
         self.estado = True

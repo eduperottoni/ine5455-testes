@@ -12,20 +12,33 @@ class TestOcorrencia(unittest.TestCase):
         self.projeto.adicionar_funcionario(self.hugo)
 
         self.ocorrencia = self.projeto.criar_ocorrencia(
-            self.hugo, "Qualquer resumo", TipoOcorrencia.TAREFA
+            self.hugo,
+            "Qualquer resumo",
+            TipoOcorrencia.TAREFA,
+            PrioridadeOcorrencia.ALTA,
         )
 
     def test_instanciar_ocorrencia_funcionario_nulo(self):
         with self.assertRaises(ValueError):
-            Ocorrencia(None, 1, "", TipoOcorrencia.TAREFA)
+            Ocorrencia(None, 1, "", TipoOcorrencia.TAREFA, PrioridadeOcorrencia.ALTA)
 
     def test_instanciar_ocorrencia_tipo_funcionario_invalido(self):
         with self.assertRaises(ValueError):
-            Ocorrencia(1, 2, "Qualquer resumo", TipoOcorrencia.TAREFA)
+            Ocorrencia(
+                1,
+                2,
+                "Qualquer resumo",
+                TipoOcorrencia.TAREFA,
+                PrioridadeOcorrencia.ALTA,
+            )
 
     def test_instanciar_ocorrencia_sucesso(self):
         ocorrencia = Ocorrencia(
-            self.hugo, 1, "Resumo da ocorrencia", TipoOcorrencia.TAREFA
+            self.hugo,
+            1,
+            "Resumo da ocorrencia",
+            TipoOcorrencia.TAREFA,
+            PrioridadeOcorrencia.ALTA,
         )
 
         self.assertEqual(id(self.hugo), id(ocorrencia.responsavel))
@@ -37,7 +50,10 @@ class TestOcorrencia(unittest.TestCase):
         joao = Funcionario("Joao")
         with self.assertRaises(ValueError):
             self.projeto.criar_ocorrencia(
-                joao, "qualquer descricao", TipoOcorrencia.TAREFA
+                joao,
+                "qualquer descricao",
+                TipoOcorrencia.TAREFA,
+                PrioridadeOcorrencia.ALTA,
             )
 
     def test_criar_ocorrencia_sucesso(self):
@@ -48,17 +64,24 @@ class TestOcorrencia(unittest.TestCase):
 
     def test_criar_ocorrencia_resumo_vazio(self):
         with self.assertRaises(ValueError):
-            self.projeto.criar_ocorrencia(self.hugo, "", TipoOcorrencia.TAREFA)
+            self.projeto.criar_ocorrencia(
+                self.hugo, "", TipoOcorrencia.TAREFA, PrioridadeOcorrencia.ALTA
+            )
 
     def test_criar_ocorrencia_resumo_poucas_letras(self):
         with self.assertRaises(ValueError):
-            self.projeto.criar_ocorrencia(self.hugo, "nada", TipoOcorrencia.TAREFA)
+            self.projeto.criar_ocorrencia(
+                self.hugo, "nada", TipoOcorrencia.TAREFA, PrioridadeOcorrencia.ALTA
+            )
 
     def test_criar_ocorrencia_gera_chave_correta(self):
         self.assertEqual(1, self.ocorrencia.chave)
 
         ocorrencia2 = self.projeto.criar_ocorrencia(
-            self.hugo, "Qualquer outro resumo", TipoOcorrencia.TAREFA
+            self.hugo,
+            "Qualquer outro resumo",
+            TipoOcorrencia.TAREFA,
+            PrioridadeOcorrencia.ALTA,
         )
 
         self.assertEqual(2, ocorrencia2.chave)
@@ -97,7 +120,11 @@ class TestOcorrencia(unittest.TestCase):
 
     def test_tipo_ocorrencia(self):
         ocorrencia = Ocorrencia(
-            self.hugo, 1, "Resumo da ocorrencia", TipoOcorrencia.TAREFA
+            self.hugo,
+            1,
+            "Resumo da ocorrencia",
+            TipoOcorrencia.TAREFA,
+            PrioridadeOcorrencia.ALTA,
         )
 
         self.assertEqual(TipoOcorrencia.TAREFA, ocorrencia.tipo)

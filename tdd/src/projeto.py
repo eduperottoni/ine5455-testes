@@ -1,5 +1,5 @@
 from funcionario import Funcionario
-from ocorrencia import Ocorrencia, TipoOcorrencia
+from ocorrencia import Ocorrencia, TipoOcorrencia, PrioridadeOcorrencia
 
 
 class Projeto:
@@ -18,12 +18,18 @@ class Projeto:
         self.funcionarios.append(funcionario)
 
     def criar_ocorrencia(
-        self, func: Funcionario, resumo: str, tipo: TipoOcorrencia
+        self,
+        func: Funcionario,
+        resumo: str,
+        tipo: TipoOcorrencia,
+        prioridade: PrioridadeOcorrencia,
     ) -> Ocorrencia:
         if func not in self.funcionarios:
             raise ValueError("Funcionário não está no projeto")
 
-        ocorrencia = Ocorrencia(func, len(self.ocorrencias) + 1, resumo, tipo)
+        ocorrencia = Ocorrencia(
+            func, len(self.ocorrencias) + 1, resumo, tipo, prioridade
+        )
 
         self.ocorrencias.append(ocorrencia)
         return ocorrencia
