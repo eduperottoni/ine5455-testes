@@ -37,6 +37,7 @@ class TestOcorrencia(unittest.TestCase):
         self.assertEqual(self.funcionario.nome, ocorrencia.responsavel.nome)
         self.assertEqual(1, ocorrencia.chave)
         self.assertEqual("Qualquer resumo", ocorrencia.resumo)
+        self.assertEqual(1, len(self.projeto.ocorrencias))
 
     def test_criar_ocorrencia_resumo_vazio(self):
         with self.assertRaises(ValueError):
@@ -45,3 +46,14 @@ class TestOcorrencia(unittest.TestCase):
     def test_criar_ocorrencia_resumo_poucas_letras(self):
         with self.assertRaises(ValueError):
             self.projeto.criar_ocorrencia(self.funcionario, "nada")
+
+    def test_criar_ocorrencia_gera_chave_correta(self):
+        ocorrencia1 = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+
+        self.assertEqual(1, ocorrencia1.chave)
+
+        ocorrencia2 = self.projeto.criar_ocorrencia(
+            self.funcionario, "Qualquer outro resumo"
+        )
+
+        self.assertEqual(2, ocorrencia2.chave)
