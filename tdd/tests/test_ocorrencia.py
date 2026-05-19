@@ -65,15 +65,35 @@ class TestOcorrencia(unittest.TestCase):
 
         self.assertEqual(True, ocorrencia.estado)
 
-    # def test_mudar_funcionario(self):
-    #     ocorrencia1 = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
-    #     jorge = Funcionario("Jorge")
-    #     self.projeto.mudar_funcionario(1, jorge)
+    def test_mudar_funcionario(self):
+        ocorrencia1 = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+        jorge = Funcionario("Jorge")
+        self.projeto.adicionar_funcionario(jorge)
+        self.projeto.mudar_funcionario(1, jorge)
 
-    # def test_mudar_funcionario_ocorrencia_fechada(self):
-    #     ocorrencia1 = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
-    #     ocorrencia1.estado = True
+    def test_mudar_funcionario_ocorrencia_fechada(self):
+        ocorrencia = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+        ocorrencia.fechar()
 
-    # def test_mudar_funcionario_ocorrencia_invalida(self):
+        jorge = Funcionario("Jorge")
+        self.projeto.adicionar_funcionario(jorge)
 
-    # def test_mudar_funcionario_nao_esta_no_projeto(self):
+        with self.assertRaises(ValueError):
+            self.projeto.mudar_funcionario(1, jorge)
+
+    def test_mudar_funcionario_ocorrencia_invalida(self):
+        _ = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+
+        jorge = Funcionario("Jorge")
+        self.projeto.adicionar_funcionario(jorge)
+
+        with self.assertRaises(ValueError):
+            self.projeto.mudar_funcionario(0, jorge)
+
+    def test_mudar_funcionario_nao_esta_no_projeto(self):
+        _ = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+
+        jorge = Funcionario("Jorge")
+
+        with self.assertRaises(ValueError):
+            self.projeto.mudar_funcionario(1, jorge)
