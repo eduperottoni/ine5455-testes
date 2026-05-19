@@ -66,7 +66,7 @@ class TestOcorrencia(unittest.TestCase):
         self.assertEqual(True, ocorrencia.estado)
 
     def test_mudar_funcionario(self):
-        ocorrencia1 = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+        _ = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
         jorge = Funcionario("Jorge")
         self.projeto.adicionar_funcionario(jorge)
         self.projeto.mudar_funcionario(1, jorge)

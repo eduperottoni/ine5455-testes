@@ -25,3 +25,15 @@ class Projeto:
 
         self.ocorrencias.append(ocorrencia)
         return ocorrencia
+
+    def mudar_funcionario(self, id_ocorrencia: int, func: Funcionario) -> None:
+        if func not in self.funcionarios:
+            raise ValueError("Funcionário não está no projeto")
+
+        if not (0 < id_ocorrencia <= len(self.ocorrencias)):
+            raise ValueError("id da ocorrência inválido")
+
+        if self.ocorrencias[id_ocorrencia - 1].estado:
+            raise ValueError("Ocorrência está fechada")
+
+        self.ocorrencias[id_ocorrencia - 1].responsavel = func
