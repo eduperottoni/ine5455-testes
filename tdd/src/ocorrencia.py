@@ -12,4 +12,5 @@ class Ocorrencia:
         self.responsavel = resp
         self.chave = chave
         self.resumo = resumo
+        # False é aberta
         self.estado = False

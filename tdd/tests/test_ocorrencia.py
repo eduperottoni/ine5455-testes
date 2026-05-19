@@ -58,3 +58,22 @@ class TestOcorrencia(unittest.TestCase):
         )
 
         self.assertEqual(2, ocorrencia2.chave)
+
+    def test_fechar_ocorrencia(self):
+        ocorrencia = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+        ocorrencia.fechar()
+
+        self.assertEqual(True, ocorrencia.estado)
+
+    # def test_mudar_funcionario(self):
+    #     ocorrencia1 = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+    #     jorge = Funcionario("Jorge")
+    #     self.projeto.mudar_funcionario(1, jorge)
+
+    # def test_mudar_funcionario_ocorrencia_fechada(self):
+    #     ocorrencia1 = self.projeto.criar_ocorrencia(self.funcionario, "Qualquer resumo")
+    #     ocorrencia1.estado = True
+
+    # def test_mudar_funcionario_ocorrencia_invalida(self):
+
+    # def test_mudar_funcionario_nao_esta_no_projeto(self):
