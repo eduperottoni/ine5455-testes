@@ -25,6 +25,7 @@ class TestOcorrencia(unittest.TestCase):
         self.assertEqual(id(self.funcionario), id(ocorrencia.responsavel))
         self.assertEqual(1, ocorrencia.chave)
         self.assertEqual("Resumo da ocorrencia", ocorrencia.resumo)
+        self.assertEqual(False, ocorrencia.estado)
 
     def test_criar_ocorrencia_funcionario_nao_esta_no_projeto(self):
         joao = Funcionario("Joao")
