@@ -31,6 +31,7 @@ class Projeto:
             func, len(self.ocorrencias) + 1, resumo, tipo, prioridade
         )
 
+        func.adicionar_ocorrencia(ocorrencia)
         self.ocorrencias.append(ocorrencia)
         return ocorrencia
 
@@ -44,4 +45,6 @@ class Projeto:
         if self.ocorrencias[id_ocorrencia - 1].estado:
             raise ValueError("Ocorrência está fechada")
 
-        self.ocorrencias[id_ocorrencia - 1].responsavel = func
+        ocorrencia = self.ocorrencias[id_ocorrencia - 1]
+        # func.adicionar_ocorrencia(ocorrencia)
+        ocorrencia.responsavel = func

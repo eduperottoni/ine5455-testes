@@ -149,8 +149,10 @@ class TestOcorrencia(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.projeto.mudar_funcionario(1, jorge)
 
-    # def test_mudar_funcionario_cheio_de_ocorrencias(self):
-    #     pass
+    def test_mudar_funcionario_cheio_de_ocorrencias(self):
+        self.projeto.adicionar_funcionario(self.eduardo_sobrecarregado)
+        with self.assertRaises(ValueError):
+            self.projeto.mudar_funcionario(1, self.eduardo_sobrecarregado)
 
     def test_tipo_ocorrencia(self):
         ocorrencia = Ocorrencia(
