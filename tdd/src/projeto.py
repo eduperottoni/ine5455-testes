@@ -14,3 +14,7 @@ class Projeto:
             raise ValueError("O funcionário já está no projeto.")
 
         self.funcionarios.append(funcionario)
+
+    def criar_ocorrencia(self, func: Funcionario):
+        if func not in self.funcionarios:
+            raise ValueError("Funcionário não está no projeto")
