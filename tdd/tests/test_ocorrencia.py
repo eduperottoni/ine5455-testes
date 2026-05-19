@@ -139,3 +139,18 @@ class TestOcorrencia(unittest.TestCase):
         )
 
         self.assertEqual(PrioridadeOcorrencia.ALTA, ocorrencia.prioridade)
+
+    def test_mudar_prioridade_ocorrencia_aberta(self):
+        self.ocorrencia.mudar_prioridade(PrioridadeOcorrencia.BAIXA)
+
+        self.assertEqual(PrioridadeOcorrencia.BAIXA, self.ocorrencia.prioridade)
+
+    def test_mudar_prioridade_ocorrencia_fechada(self):
+        self.ocorrencia.fechar()
+
+        with self.assertRaises(ValueError):
+            self.ocorrencia.mudar_prioridade(PrioridadeOcorrencia.BAIXA)
+
+    def test_mudar_prioridade_invalida(self):
+        with self.assertRaises(ValueError):
+            self.ocorrencia.mudar_prioridade(None)
