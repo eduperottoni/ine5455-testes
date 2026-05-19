@@ -10,7 +10,7 @@ class TestProjeto(unittest.TestCase):
 
     def test_criar_projeto(self):
         projeto = Projeto("Projeto Teste")
-        self.assertEqual(projeto.nome, "Projeto Teste")
+        self.assertEqual("Projeto Teste", projeto.nome)
 
     def test_criar_projeto_sem_nome(self):
         with self.assertRaises(TypeError):

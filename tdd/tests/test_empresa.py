@@ -11,7 +11,7 @@ class TestEmpresa(unittest.TestCase):
 
     def test_criar_empresa(self):
         empresa = Empresa("Cia da Equação")
-        self.assertEqual(empresa.nome, "Cia da Equação")
+        self.assertEqual("Cia da Equação", empresa.nome)
 
     def test_criar_empresa_sem_nome(self):
         with self.assertRaises(TypeError):
@@ -22,7 +22,7 @@ class TestEmpresa(unittest.TestCase):
 
         self.empresa.adicionar_funcionario(funcionario)
 
-        self.assertEqual(self.empresa.funcionarios[0].nome, "Hugo")
+        self.assertEqual("Hugo", self.empresa.funcionarios[0].nome)
 
     def test_add_varios_funcionarios(self):
         funcionario1 = Funcionario("Matheus")
