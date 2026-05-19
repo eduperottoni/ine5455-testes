@@ -18,6 +18,17 @@ class TestOcorrencia(unittest.TestCase):
             PrioridadeOcorrencia.ALTA,
         )
 
+        self.outro_projeto = Projeto("Projeto Teste 2")
+        self.eduardo_sobrecarregado = Funcionario("Eduardo")
+        self.outro_projeto.adicionar_funcionario(self.eduardo_sobrecarregado)
+        for _ in range(10):
+            self.outro_projeto.criar_ocorrencia(
+                self.eduardo_sobrecarregado,
+                "Qualquer resumo",
+                TipoOcorrencia.TAREFA,
+                PrioridadeOcorrencia.ALTA,
+            )
+
     def test_instanciar_ocorrencia_funcionario_nulo(self):
         with self.assertRaises(ValueError):
             Ocorrencia(None, 1, "", TipoOcorrencia.TAREFA, PrioridadeOcorrencia.ALTA)
@@ -86,6 +97,26 @@ class TestOcorrencia(unittest.TestCase):
 
         self.assertEqual(2, ocorrencia2.chave)
 
+    def test_criar_ocorrencia_funcionario_ocupado(self):
+        with self.assertRaises(ValueError):
+            _ = self.outro_projeto.criar_ocorrencia(
+                self.eduardo_sobrecarregado,
+                "Qualquer outro resumo",
+                TipoOcorrencia.TAREFA,
+                PrioridadeOcorrencia.ALTA,
+            )
+
+    def test_criar_ocorrencia_funcionario_ocupado_outro_projeto(self):
+        self.projeto.adicionar_funcionario(self.eduardo_sobrecarregado)
+
+        with self.assertRaises(ValueError):
+            _ = self.projeto.criar_ocorrencia(
+                self.eduardo_sobrecarregado,
+                "Qualquer outro resumo",
+                TipoOcorrencia.TAREFA,
+                PrioridadeOcorrencia.ALTA,
+            )
+
     def test_fechar_ocorrencia(self):
         self.ocorrencia.fechar()
 
@@ -117,6 +148,9 @@ class TestOcorrencia(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.projeto.mudar_funcionario(1, jorge)
+
+    # def test_mudar_funcionario_cheio_de_ocorrencias(self):
+    #     pass
 
     def test_tipo_ocorrencia(self):
         ocorrencia = Ocorrencia(
