@@ -17,11 +17,11 @@ class Projeto:
 
         self.funcionarios.append(funcionario)
 
-    def criar_ocorrencia(self, func: Funcionario) -> Ocorrencia:
+    def criar_ocorrencia(self, func: Funcionario, resumo: str) -> Ocorrencia:
         if func not in self.funcionarios:
             raise ValueError("Funcionário não está no projeto")
 
-        ocorrencia = Ocorrencia(func, 3, "")
+        ocorrencia = Ocorrencia(func, len(self.ocorrencias) + 1, resumo)
 
         self.ocorrencias.append(ocorrencia)
         return ocorrencia
