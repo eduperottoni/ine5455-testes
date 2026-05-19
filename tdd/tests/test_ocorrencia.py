@@ -10,6 +10,18 @@ class TestOcorrencia(unittest.TestCase):
         self.projeto = Projeto("Projeto Teste")
         self.funcionario = Funcionario("Hugo")
 
+    def test_instanciar_ocorrencia_funcionario_nulo(self):
+        with self.assertRaises(ValueError):
+            Ocorrencia(None)
+
+    def test_instanciar_ocorrencia_tipo_funcionario_invalido(self):
+        with self.assertRaises(ValueError):
+            Ocorrencia(1)
+
+    def test_instanciar_ocorrencia_funcionario_sucesso(self):
+        ocorrencia = Ocorrencia(self.funcionario)
+        self.assertEqual(id(self.funcionario), id(ocorrencia.responsavel))
+
     def test_criar_ocorrencia_sem_funcionario(self):
         with self.assertRaises(ValueError):
             self.projeto.criar_ocorrencia()
