@@ -46,5 +46,5 @@ class Projeto:
             raise ValueError("Ocorrência está fechada")
 
         ocorrencia = self.ocorrencias[id_ocorrencia - 1]
-        # func.adicionar_ocorrencia(ocorrencia)
+        func.adicionar_ocorrencia(ocorrencia)
         ocorrencia.responsavel = func
