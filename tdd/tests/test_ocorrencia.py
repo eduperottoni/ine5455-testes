@@ -127,6 +127,13 @@ class TestOcorrencia(unittest.TestCase):
         self.projeto.adicionar_funcionario(jorge)
         self.projeto.mudar_funcionario(1, jorge)
 
+    def test_mudar_funcionario_remove_do_responsavel_anterior(self):
+        jorge = Funcionario("Jorge")
+        self.projeto.adicionar_funcionario(jorge)
+        self.projeto.mudar_funcionario(1, jorge)
+
+        self.assertNotIn(self.ocorrencia, self.hugo.ocorrencias)
+
     def test_mudar_funcionario_ocorrencia_fechada(self):
         self.ocorrencia.fechar()
 
