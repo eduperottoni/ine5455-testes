@@ -1,0 +1,26 @@
+# Pytest
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+*.pyc
+report.html
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Selenium
+*.side
+geckodriver.log
