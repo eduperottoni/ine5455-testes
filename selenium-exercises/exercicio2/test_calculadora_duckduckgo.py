@@ -125,7 +125,7 @@ class TestCalculadoraDuckDuckGo(unittest.TestCase):
         self.assertIn("25", resultado3, msg3)
 
         operacoes = self.obter_operacoes_historico()
-        count = len(operacoes)
+        count = len(operacoes)  
         msg = f"Esperado 3+ itens no histórico, obteve {count}"
         self.assertGreaterEqual(count, 3, msg)
 
