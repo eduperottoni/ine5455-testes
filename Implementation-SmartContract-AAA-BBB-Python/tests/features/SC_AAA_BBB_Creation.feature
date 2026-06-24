@@ -23,12 +23,11 @@ Scenario: Activate the SC_AAA_BBB contract
 Given data de criação é 1
     And contrato foi criado
 When o contrato é ativado
-    And a data de ativação é 16
-Then contrato deve ter status "ATIVO"
-    And Oblig1 deve ter status "ATIVO"
-    And Oblig2 deve ter status "ATIVO"
-    And Oblig3 deve ter status "ATIVO"
-    And Oblig4 deve ter status "ATIVO"
-    And Oblig5 deve ter status "ATIVO"
-    And Oblig6 deve ter status "ATIVO"
-    And Oblig7 deve ter status "CRIADO"
+Then contrato deve ter status 1
+    And Oblig1 deve ter status 1
+    And Oblig2 deve ter status 1
+    And Oblig3 deve ter status 1
+    And Oblig4 deve ter status 1
+    And Oblig5 deve ter status 1
+    And Oblig6 deve ter status 1
+    And Oblig7 deve ter status 0

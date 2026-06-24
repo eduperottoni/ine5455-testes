@@ -96,7 +96,7 @@ contract ClientContractorContract {
     // obrigações são encerradas (Inactive).
     function terminate () public {
         require(status == Status.InEffect, unicode"O contrato precisa estar em vigor para ser encerrado");
-        if (isObligFulfilled(1) && isObligFulfilled(4) && isObligFulfilled(5)) {
+        if (isObligFulfilled(1) && isObligFulfilled(2) && isObligFulfilled(4) && isObligFulfilled(5)) {
             status = Status.SuccessfulTermination;
             oblig7.status = ObligStatus.Active; // obrigação sobrevivente ativada na entrada
         } else {
