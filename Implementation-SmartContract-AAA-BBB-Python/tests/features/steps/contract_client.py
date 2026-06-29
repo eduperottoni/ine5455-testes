@@ -2,8 +2,8 @@ from solcx import compile_standard, install_solc
 import json
 from web3 import Web3
 
-address = "0x2389011e574f9dF0F34eEc9f39BbE2C400CFE31f"
-private_key = "0x6950316a16ba968518ed79620c274792a5c7083dd15a45d4eddf9897db2b0417"
+address = "0x9A4B680d31F235DDBDDACdbDB29ffaf918C0E78a"
+private_key = "0x3a81c05d07183a928973de7c484981a699ef5e538c50bba6d223cb0e40ce6cc9"
 chain_id = 1337
 
 smart_contract = None

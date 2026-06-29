@@ -2,7 +2,7 @@ pragma solidity 0.8.0;
 
 contract ClientContractorContract {
     
-    address owner = msg.sender; //dono do contrato é o criador
+    address owner = msg.sender;
 
     enum Status { Created, InEffect, SuccessfulTermination, UnsuccessfulTermination }
     enum ObligStatus { Created, Active, Fullfilled, Unfulfilled, Inactive }
@@ -27,15 +27,16 @@ contract ClientContractorContract {
     Oblig oblig6;
     Oblig oblig7;
 
-    // INCOMPLETO
-
     constructor( string memory _client, string memory _contractor, int _creationDate ) public {
         client = _client;
         contractor = _contractor;
+
     	creationDate = _creationDate;
         activationDate = creationDate + 15;
         terminationDate = activationDate + 30;
+
         status = Status.Created;
+
         oblig1 = Oblig(unicode"Prestar os serviços contratados", ObligStatus.Created);
         oblig2 = Oblig(unicode"Enviar fatura e relatório das horas prestadas", ObligStatus.Created);
         oblig3 = Oblig(unicode"Indicar um colaborador responsável pelos contatos de ordem técnica com a Contratada", ObligStatus.Created);
@@ -47,9 +48,8 @@ contract ClientContractorContract {
 
     //SETTERS
 
-    // Transição Activate (diagrama de estados AAA-BBB): ao ativar o contrato,
-    // as obrigações oblig1..oblig6 são ativadas. A oblig7 é uma obrigação
-    // "sobrevivente": só é ativada na entrada do estado Successful Termination.
+    // Ao ativar o contrato, as obrigações oblig1..oblig6 são ativadas.
+    // A oblig7 é só é ativada na entrada do estado Successful Termination.
    	function activate () public {
         require(status == Status.Created, unicode"O contrato precisa estar em 'Created' para ser ativado");
     	status = Status.InEffect;
@@ -61,12 +61,12 @@ contract ClientContractorContract {
         oblig6.status = ObligStatus.Active;
     }
 
-    // Marca uma obrigação (1..7) como cumprida.
+    // Marca uma obrigação como cumprida.
     function fulfillOblig(uint8 number) public {
         setObligStatus(number, ObligStatus.Fullfilled);
     }
 
-    // Marca uma obrigação (1..7) como descumprida.
+    // Marca uma obrigação como descumprida.
     function unfulfillOblig(uint8 number) public {
         setObligStatus(number, ObligStatus.Unfulfilled);
     }
@@ -87,18 +87,19 @@ contract ClientContractorContract {
         return getObligStatus(number) == ObligStatus.Fullfilled;
     }
 
-    // Transição FulfillActiveObligations: encerra o contrato com SUCESSO quando as
-    // obrigações essenciais (oblig1 E oblig4 E oblig5) estão cumpridas. Na entrada do
-    // estado Successful Termination a obrigação sobrevivente (oblig7) é ativada.
+    // Encerra o contrato com sucesso quando 1, 4 e 5 estão cumpridas e a oblig2 não
+    // foi descumprida.
     //
-    // Transição Terminate: encerra SEM sucesso quando alguma obrigação essencial não
+    // Encerra sem sucesso quando alguma obrigação essencial não
     // foi cumprida (~oblig1 OU ~oblig2 OU ~oblig4 OU ~oblig5). Nesse caso todas as
     // obrigações são encerradas (Inactive).
     function terminate () public {
         require(status == Status.InEffect, unicode"O contrato precisa estar em vigor para ser encerrado");
-        if (isObligFulfilled(1) && isObligFulfilled(2) && isObligFulfilled(4) && isObligFulfilled(5)) {
+        bool essentialsFulfilled = isObligFulfilled(1) && isObligFulfilled(4) && isObligFulfilled(5);
+        bool oblig2Breached = getObligStatus(2) == ObligStatus.Unfulfilled;
+        if (essentialsFulfilled && !oblig2Breached) {
             status = Status.SuccessfulTermination;
-            oblig7.status = ObligStatus.Active; // obrigação sobrevivente ativada na entrada
+            oblig7.status = ObligStatus.Active;
         } else {
             status = Status.UnsuccessfulTermination;
             oblig1.status = ObligStatus.Inactive;
@@ -111,11 +112,7 @@ contract ClientContractorContract {
         }
     }
 
-
-
     //GETTERS
-    
-    //view significa que nao tem transacao, nao precisa minerar (nao usa gas para executar)
     
     function getStatus() public view returns (Status) {
         return status;
@@ -165,7 +162,7 @@ contract ClientContractorContract {
         return oblig7;
     }
 
-    // Retorna apenas o status de uma obrigação (1..7).
+    // Retorna apenas o status de uma obrigação
     function getObligStatus(uint8 number) public view returns (ObligStatus) {
         if (number == 1) { return oblig1.status; }
         else if (number == 2) { return oblig2.status; }
@@ -176,7 +173,4 @@ contract ClientContractorContract {
         else if (number == 7) { return oblig7.status; }
         revert(unicode"Obrigação inexistente (use 1..7)");
     }
-
-    
-
 }
